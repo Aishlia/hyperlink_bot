@@ -29,4 +29,15 @@ async def finding_the_recipe(context, *phrase_link: str):
     embed=discord.Embed(title=phrase, url = link, color=0xFF5733)
     await context.send(embed=embed)
 
+@bot.event
+async def on_message(message):
+    if message.author.id == bot.user.id:
+        return
+    msg_content = message.content.lower()
+
+    command = ['!link']
+
+    # if any(word in msg_content for word in command):
+    #     await message.delete(delay=1)
+
 bot.run(os.getenv('BOT_TOKEN'))
